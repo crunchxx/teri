@@ -88,3 +88,7 @@ quick-terminal-space-behavior = remain
 
 # 鼠标在哪个分屏，焦点就在哪（语音输入不跑偏）
 focus-follows-mouse = true
+
+# Option 键当 Alt 用（zsh 的 Alt+b/f/d、tmux/nvim 的 Alt 映射靠它）
+# 代价：Option+字母 不再输入 ∫、†、å 之类特殊字符。想恢复就注释掉这行。
+macos-option-as-alt = true

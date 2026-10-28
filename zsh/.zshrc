@@ -7,6 +7,10 @@ export NOTES_VAULT="${NOTES_VAULT:-$HOME/Notes}"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# PATH：typeset -U 让重复条目自动合并，避免多次 source 后越堆越多
+typeset -U path PATH
+path=("$HOME/.local/bin" "$HOME/.cargo/bin" $path)
+
 # 确保笔记目录存在
 [[ ! -d "$NOTES_VAULT" ]] && mkdir -p "$NOTES_VAULT/Daily"
 
@@ -54,9 +58,10 @@ if command -v eza &> /dev/null; then
 fi
 
 # Bat (cat 替代品)
+# 注意：不要 alias less='bat'。bat 不接受 less 的参数（less -R 会 exit 2），
+# 会让所有 `xxx | less -R` 直接报错。
 if command -v bat &> /dev/null; then
     alias cat='bat --paging=never'
-    alias less='bat'
 fi
 
 # Zoxide (cd 替代品)
@@ -195,15 +200,33 @@ EOF
 # History 配置
 # ============================================
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE      # 以空格开头的命令不进历史（贴 token 时用）
+setopt HIST_REDUCE_BLANKS
+setopt EXTENDED_HISTORY       # 记录时间戳，方便 history 回溯
 setopt SHARE_HISTORY
 
 # ============================================
 # 自动补全
 # ============================================
+# 额外补全定义（需要 brew install zsh-completions）
+[[ -d /opt/homebrew/share/zsh-completions ]] && fpath=(/opt/homebrew/share/zsh-completions $fpath)
+
+# zstyle 必须写在 compinit 之前，否则不生效
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*:approximate:*' max-errors 2
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*:warnings' format '%F{red}-- no matches --%f'
+zstyle ':completion:*' squeeze-slashes true
+
+setopt AUTO_MENU COMPLETE_IN_WORD ALWAYS_TO_END
+
 autoload -Uz compinit
 compinit
 
@@ -221,11 +244,6 @@ fi
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6c7086'
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Rust: cargo install 的工具（rustlings 等）
-export PATH="$HOME/.cargo/bin:$PATH"
-
-export PATH="$HOME/.local/bin:$PATH"
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
