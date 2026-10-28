@@ -147,6 +147,12 @@ setup_symlinks() {
     
     # Zsh
     create_symlink "$SCRIPT_DIR/zsh/.zshrc" "$HOME/.zshrc"
+
+    # Tmux
+    create_symlink "$SCRIPT_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
+
+    # Git
+    create_symlink "$SCRIPT_DIR/git/.gitconfig" "$HOME/.gitconfig"
     
     # Templates
     create_symlink "$SCRIPT_DIR/templates" "$HOME/.config/templates"

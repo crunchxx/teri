@@ -1,0 +1,67 @@
+[user]
+	name = crunchxx
+	email = 163625442+crunchxx@users.noreply.github.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	pager = delta
+	editor = nvim
+	autocrlf = input
+	quotepath = false
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = false
+	true-color = always
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default
+
+[rerere]
+	enabled = true
+
+[fetch]
+	prune = true
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+	default = current
+
+[rebase]
+	autosquash = true
+	autoStash = true
+
+[column]
+	ui = auto
+
+[help]
+	autocorrect = 10
+
+[alias]
+	st = status -sb
+	sw = switch
+	co = checkout
+	br = branch -vv
+	cm = commit -m
+	ca = commit --amend --no-edit
+	aa = add -A
+	unstage = restore --staged
+	undo = reset --soft HEAD~1
+	last = log -1 --stat
+	lg = log --oneline --graph --decorate --all
+	who = shortlog -sn --no-merges
+	clean-branches = "!git branch --merged | grep -v '\\*\\|main\\|master' | xargs -r git branch -d"
+[credential]
+	helper = osxkeychain
