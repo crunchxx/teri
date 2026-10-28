@@ -1,0 +1,76 @@
+// Zellij Configuration
+// Theme: Catppuccin Mocha
+
+// 主题配色
+theme "catppuccin-mocha"
+
+themes {
+    catppuccin-mocha {
+        fg 205 214 244
+        bg 30 30 46
+        black 69 71 90
+        red 243 139 168
+        green 166 227 161
+        yellow 249 226 175
+        blue 137 180 250
+        magenta 245 194 231
+        cyan 148 226 213
+        white 186 194 222
+        orange 250 179 135
+    }
+}
+
+// 简化模式（对初学者更友好）
+simplified_ui true
+
+// 默认模式
+default_mode "normal"
+
+// 鼠标支持
+mouse_mode true
+
+// 复制到系统剪贴板
+copy_on_select true
+
+// 滚动缓冲区大小
+scroll_buffer_size 10000
+
+// UI 配置
+pane_frames false
+default_layout "compact"
+
+// 键绑定（Vim 风格但更友好）
+keybinds clear-defaults=true {
+    normal {
+        // Tab 管理
+        bind "Ctrl t" { NewTab; }
+        bind "Ctrl w" { CloseTab; }
+        bind "Ctrl h" { GoToPreviousTab; }
+        bind "Ctrl l" { GoToNextTab; }
+        
+        // Pane 管理
+        bind "Ctrl s" { NewPane "Down"; }
+        bind "Ctrl v" { NewPane "Right"; }
+        bind "Ctrl x" { CloseFocus; }
+        
+        // Pane 导航
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt l" { MoveFocus "Right"; }
+        
+        // 调整大小
+        bind "Alt +" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+        
+        // 滚动模式
+        bind "Ctrl b" { ScrollUp; }
+        bind "Ctrl f" { ScrollDown; }
+        
+        // 搜索
+        bind "Ctrl g" { Search "down"; }
+        
+        // 退出
+        bind "Ctrl q" { Quit; }
+    }
+}

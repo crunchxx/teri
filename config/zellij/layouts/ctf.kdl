@@ -1,0 +1,49 @@
+// CTF Writeup Layout - CTF 解题布局
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    // Tab 1: 笔记编辑器
+    tab name="📝 writeup" focus=true {
+        pane split_direction="vertical" {
+            pane size="60%" {
+                command "nvim"
+                // 文件路径将由 ctf 脚本动态设置
+            }
+            pane {
+                // Shell for commands
+            }
+        }
+    }
+
+    // Tab 2: 浏览器 + Shell
+    tab name="🔍 recon" {
+        pane split_direction="horizontal" {
+            pane size="65%" {
+                command "w3m"
+            }
+            pane {
+                // Shell for tools
+            }
+        }
+    }
+
+    // Tab 3: 监控
+    tab name="📊 monitor" {
+        pane split_direction="horizontal" {
+            pane {
+                command "btop"
+            }
+            pane {
+                // Shell for network monitoring
+            }
+        }
+    }
+}

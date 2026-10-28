@@ -1,0 +1,67 @@
+# Lazygit Configuration
+# Theme: Catppuccin Mocha
+
+gui:
+  # 主题
+  theme:
+    activeBorderColor:
+      - '#89b4fa' # Blue
+      - bold
+    inactiveBorderColor:
+      - '#45475a' # Surface1
+    selectedLineBgColor:
+      - '#313244' # Surface0
+    selectedRangeBgColor:
+      - '#313244' # Surface0
+  
+  # 显示设置
+  showFileTree: true
+  showRandomTip: false
+  showCommandLog: false
+  nerdFontsVersion: "3"
+  
+  # 提交信息长度
+  commitLength:
+    show: true
+  
+  # 鼠标支持
+  mouseEvents: true
+
+# Git 配置
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  
+  commit:
+    signOff: false
+  
+  merging:
+    manualCommit: false
+  
+  skipHookPrefix: WIP
+  
+  autoFetch: true
+  autoRefresh: true
+  
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
+
+# 刷新间隔
+refresher:
+  refreshInterval: 10
+  fetchInterval: 60
+
+# 自定义命令
+customCommands:
+  - key: 'P'
+    command: 'git push -u origin {{.SelectedLocalBranch.Name}}'
+    context: 'localBranches'
+    description: 'Push and set upstream'
+  
+  - key: 'C'
+    command: 'git commit --amend --no-edit'
+    context: 'files'
+    description: 'Amend commit (no edit)'
+
+# 中文提示
+promptToReturnFromSubprocess: true

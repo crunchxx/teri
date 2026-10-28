@@ -1,0 +1,90 @@
+# Ghostty Terminal Configuration
+# Theme: Catppuccin Mocha
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+
+# Window
+window-padding-x = 8
+window-padding-y = 8
+window-padding-balance = true
+
+# Transparency & Blur
+background-opacity = 0.95
+background-blur-radius = 20
+
+# Theme Colors - Catppuccin Mocha
+background = 1e1e2e
+foreground = cdd6f4
+
+# Black
+palette = 0=#45475a
+palette = 8=#585b70
+
+# Red
+palette = 1=#f38ba8
+palette = 9=#f38ba8
+
+# Green
+palette = 2=#a6e3a1
+palette = 10=#a6e3a1
+
+# Yellow
+palette = 3=#f9e2af
+palette = 11=#f9e2af
+
+# Blue
+palette = 4=#89b4fa
+palette = 12=#89b4fa
+
+# Magenta
+palette = 5=#f5c2e7
+palette = 13=#f5c2e7
+
+# Cyan
+palette = 6=#94e2d5
+palette = 14=#94e2d5
+
+# White
+palette = 7=#bac2de
+palette = 15=#a6adc8
+
+# Cursor
+cursor-color = f5e0dc
+cursor-text = 1e1e2e
+
+# Selection
+selection-background = 585b70
+selection-foreground = cdd6f4
+
+# Key Bindings
+keybind = super+t=new_tab
+keybind = super+w=close_surface
+keybind = super+shift+left_bracket=previous_tab
+keybind = super+shift+right_bracket=next_tab
+keybind = super+n=new_window
+keybind = super+shift+t=reload_config
+
+# Misc
+shell-integration-features = true
+copy-on-select = true
+clipboard-trim-trailing-spaces = true
+
+# Quick Terminal：任何地方按 Ctrl+Option+T 呼出/收起（全局热键，需「辅助功能」权限）
+keybind = global:ctrl+alt+t=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-animation-duration = 0.15
+quick-terminal-screen = main
+quick-terminal-space-behavior = remain
+
+# Custom Shader: CRT（扫描线 + 暗角 + 色差 + 轻微闪烁）
+# 开/关方式：注释掉下一行 → super+shift+t 重载
+# 调参：直接改 shaders/crt.glsl 顶部的 const → super+shift+t
+# 最坏情况（装上后整个窗口全黑 / 看不清字）：新开一个 Ghostty 标签执行
+#   sed -i '' 's|^custom-shader|#custom-shader|' ~/.config/ghostty/config && killall ghostty
+#custom-shader = /Users/crunchxx/dotfiles/config/ghostty/shaders/crt.glsl
+# custom-shader-animation = true
+
+# 鼠标在哪个分屏，焦点就在哪（语音输入不跑偏）
+focus-follows-mouse = true

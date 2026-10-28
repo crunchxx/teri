@@ -1,0 +1,41 @@
+// 极简工作空间布局
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    // 主工作区：一个干净的 shell
+    tab name="~" focus=true {
+        pane
+    }
+
+    // 笔记：简单的预览
+    tab name="notes" cwd="/Users/crunchxx/Notes" {
+        pane split_direction="vertical" {
+            pane size="45%" {
+                command "glow"
+            }
+            pane {
+                // Shell for editing
+            }
+        }
+    }
+
+    // 代码：编辑器 + git
+    tab name="code" {
+        pane split_direction="horizontal" {
+            pane size="70%" {
+                // Neovim or AI assistant
+            }
+            pane {
+                command "lazygit"
+            }
+        }
+    }
+}
